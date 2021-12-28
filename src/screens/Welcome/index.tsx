@@ -11,8 +11,8 @@ const Welcome = () => {
     <Container>
       <Title>
         Gerencie {'\n'}
-        suas plantas {'\n'}
-        de forma fácil
+        suas plantas de {'\n'}
+        forma fácil
       </Title>
 
       <Background source={aguando} resizeMode='contain' />

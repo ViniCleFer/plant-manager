@@ -2,6 +2,7 @@ import styled from 'styled-components/native';
 import { Dimensions } from 'react-native';
 
 import colors from '../../styles/colors';
+import fonts from '../../styles/fonts';
 
 export const Container = styled.SafeAreaView`
   flex: 1;
@@ -12,10 +13,11 @@ export const Container = styled.SafeAreaView`
 export const Title = styled.Text`
   padding: 0 50px;
   color: ${colors.heading};
-  font-size: 32px;
-  line-height: 38px;
+  font-size: 28px;
+  line-height: 34px;
   text-align: center;
   margin-top: 28px;
+  font-family: ${fonts.heading};
 `;
 
 export const Background = styled.Image`
@@ -28,6 +30,7 @@ export const Description = styled.Text`
   font-size: 17px;
   text-align: center;
   line-height: 25px;
+  font-family: ${fonts.text};
 `;
 
 export const Button = styled.TouchableOpacity`
