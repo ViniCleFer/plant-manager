@@ -1,6 +1,12 @@
-import React, { ReactNode, useCallback, useState } from 'react';
-import { Platform, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import React, { useEffect, useCallback, useState } from 'react';
+import {
+  Platform,
+  TouchableWithoutFeedback,
+  Keyboard,
+  Alert,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { Button } from '../../components';
 
@@ -23,6 +29,25 @@ const UserIdentification = () => {
 
   const { navigate } = useNavigation();
 
+  useEffect(() => {
+    async function loadUser() {
+      const nameStorage = await AsyncStorage.getItem('@plantmanager:user');
+
+      if (nameStorage) {
+        navigate('Confirmation', {
+          title: 'Prontinho',
+          subtitle:
+            'Agora vamos começar a cuidar das suas plantinhas com muito cuidado.',
+          buttonTitle: 'Começar',
+          icon: 'smile',
+          nextScreen: 'PlantSelect',
+        });
+      }
+    }
+
+    loadUser();
+  }, []);
+
   const handleInputBlur = useCallback(() => {
     setIsFocused(false);
   }, []);
@@ -36,9 +61,26 @@ const UserIdentification = () => {
     setName(value);
   }, []);
 
-  const handleConfirmation = useCallback(() => {
-    navigate('Confirmation');
-  }, []);
+  const handleConfirmation = useCallback(async () => {
+    if (!name) {
+      return Alert.alert('Me diz como chamar você 🥲');
+    }
+
+    try {
+      await AsyncStorage.setItem('@plantmanager:user', name);
+
+      navigate('Confirmation', {
+        title: 'Prontinho',
+        subtitle:
+          'Agora vamos começar a cuidar das suas plantinhas com muito cuidado.',
+        buttonTitle: 'Começar',
+        icon: 'smile',
+        nextScreen: 'PlantSelect',
+      });
+    } catch {
+      Alert.alert('Não foi possível salvar o seu nome 🥲');
+    }
+  }, [name]);
 
   return (
     <Container>

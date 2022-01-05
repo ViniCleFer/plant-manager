@@ -9,7 +9,7 @@ export const Container = styled.SafeAreaView`
 `;
 
 export const HeaderContainer = styled.View`
-  padding: 0 28px;
+  padding: 10px 28px;
 `;
 
 export const Title = styled.Text`
@@ -27,15 +27,33 @@ export const Subtitle = styled.Text`
   font-family: ${fonts.text};
 `;
 
-export const List = styled.FlatList.attrs({
+export const ListEnviroments = styled.FlatList.attrs({
   horizontal: true,
   showsHorizontalScrollIndicator: false,
   contentContainerStyle: {
-    height: 40,
-    paddingLeft: 28,
-    marginVertical: 28,
     justifyContent: 'center',
+    height: 40,
+    marginVertical: 28,
+    paddingLeft: 28,
   },
+})``;
+
+export const Plants = styled.View`
+  flex: 1;
+  /* justify-content: center; */
+  padding: 0 32px;
+`;
+
+export const ListPlants = styled.FlatList.attrs({
+  showsVerticalScrollIndicator: false,
+  numColumns: 2,
+  // flex: 1,
+  // contentContainerStyle: {
+  //   height: 40,
+  //   paddingLeft: 28,
+  //   marginVertical: 28,
+  //   justifyContent: 'center',
+  // },
 })``;
 
 export const Button = styled.TouchableOpacity`

@@ -1,27 +1,43 @@
 import React, { useCallback } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { Button } from '../../components';
 
 import { Container, Content, Emoji, Title, Subtitle, Footer } from './styles';
 
+interface Params {
+  title: string;
+  subtitle: string;
+  buttonTitle: string;
+  icon: 'smile' | 'hug';
+  nextScreen: string;
+}
+
+const emojis = {
+  hug: '🤗',
+  smile: '😄',
+};
+
 const Confirmation = () => {
   const { navigate } = useNavigation();
 
+  const routes = useRoute();
+
+  const { title, subtitle, buttonTitle, icon, nextScreen } =
+    routes.params as Params;
+
   const handleInputValue = useCallback(() => {
-    navigate('PlantSelect');
+    navigate(nextScreen);
   }, []);
 
   return (
     <Container>
       <Content>
-        <Emoji>😄</Emoji>
-        <Title>Prontinho</Title>
-        <Subtitle>
-          Agora vamos começar a cuidar das suas plantinhas com muito cuidado.
-        </Subtitle>
+        <Emoji>{emojis[icon]}</Emoji>
+        <Title>{title}</Title>
+        <Subtitle>{subtitle}</Subtitle>
         <Footer>
-          <Button title='Começar' onPress={handleInputValue} />
+          <Button title={buttonTitle} onPress={handleInputValue} />
         </Footer>
       </Content>
     </Container>

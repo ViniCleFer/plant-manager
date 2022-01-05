@@ -15,7 +15,7 @@ export const Container = styled(RectButton)`
   justify-content: center;
   align-items: center;
   border-radius: 12px;
-  margin-right: 8px;
+  margin: 0 8px;
 
   ${(props: EnviromentButtonProps) =>
     props.active === true &&

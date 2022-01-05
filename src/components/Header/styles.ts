@@ -32,4 +32,5 @@ export const Avatar = styled.Image`
   width: 70px;
   height: 70px;
   border-radius: 35px;
+  border: 1px solid ${colors.shape};
 `;
